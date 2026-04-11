@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Blue Moon - Experience Luxury Under the Moonlight | Hisar</title>
+    <meta name="description" content="Premium hotel in Hisar near bus stand. Comfortable rooms, excellent hospitality, and prime location. Book your stay at Hotel Blue Moon today!">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #0f1419;
+            --accent: #4a9a8e;
+            --text: #a8b2c1;
+            --text-light: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-light);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 5px;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar.scrolled {
+            background: rgba(15, 20, 25, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .moon {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle at 30% 30%, #ffd89b, #f4a261, #e76f51);
+            border-radius: 50%;
+            box-shadow: 0 0 100px rgba(255, 216, 155, 0.6),
+                        0 0 200px rgba(247, 162, 97, 0.4),
+                        inset -20px -20px 50px rgba(0, 0, 0, 0.2);
+            animation: float 6s ease-in-out infinite;
+            top: 15%;
+            right: 10%;
+        }
+
+        .moon::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            top: 30%;
+            left: 20%;
+        }
+
+        .moon::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 50%;
+            bottom: 20%;
+            right: 25%;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(74, 154, 142, 0.3);
+            border-color: var(--accent);
+        }
+
+        /* Button */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #3d7f74);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(74, 154, 142, 0.5);
+        }
+
+        /* Room Card */
+        .room-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .room-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .room-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .room-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 20, 25, 0.95), transparent);
+            padding: 30px 20px;
+            transform: translateY(60px);
+            transition: transform 0.3s ease;
+        }
+
+        .room-card:hover .room-overlay {
+            transform: translateY(0);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            cursor: pointer;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2);
+        }
+
+        /* Review Card */
+        .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+        }
+
+        /* Amenities Grid */
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .amenity-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .amenity-item:hover {
+            background: rgba(74, 154, 142, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .amenity-item i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 20px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        /* Floating Buttons */
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            bottom: 30px;
+        }
+
+        .enquire-btn {
+            background: var(--accent);
+            color: white;
+            bottom: 110px;
+        }
+
+        .back-to-top {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+            bottom: 190px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Contact Form */
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Parallax */
+        .parallax-section {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: rgba(15, 20, 25, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .mobile-menu.active {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .moon {
+                width: 200px;
+                height: 200px;
+                top: 10%;
+                right: 5%;
+            }
+
+            .desktop-menu {
+                display: none;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-moon text-3xl" style="color: #ffd89b;"></i>
+                    <div>
+                        <h1 class="text-2xl font-bold" style="color: var(--text-light);">Hotel Blue Moon</h1>
+                        <p class="text-xs" style="color: var(--accent);">Luxury Under the Moonlight</p>
+                    </div>
+                </div>
+                
+                <div class="desktop-menu hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-white transition">Home</a>
+                    <a href="#about" class="hover:text-white transition">About</a>
+                    <a href="#rooms" class="hover:text-white transition">Rooms</a>
+                    <a href="#gallery" class="hover:text-white transition">Gallery</a>
+                    <a href="#reviews" class="hover:text-white transition">Reviews</a>
+                    <a href="#contact" class="hover:text-white transition">Contact</a>
+                </div>
+
+                <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="block py-3 hover:text-white" onclick="toggleMobileMenu()">Home</a>
+        <a href="#about" class="block py-3 hover:text-white" onclick="toggleMobileMenu()">About</a>
+        <a href="#rooms" class="block py-3 hover:text-white" onclick="toggleMobileMenu()">Rooms</a>
+        <a href="#gallery" class="block py-3 hover:text-white" onclick="toggleMobileMenu()">Gallery</a>
+        <a href="#reviews" class="block py-3 hover:text-white" onclick="toggleMobileMenu()">Reviews</a>
+        <a href="#contact" class="block py-3 hover:text-white" onclick="toggleMobileMenu()">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="stars"></div>
+        <div class="moon"></div>
+        <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 fade-in">Experience Luxury<br>Under the Moonlight</h1>
+            <p class="text-xl md:text-2xl mb-8 fade-in" style="animation-delay: 0.2s;">Premium comfort in the heart of Hisar | Prime location near Bus Stand</p>
+            <div class="flex flex-wrap justify-center gap-4 fade-in" style="animation-delay: 0.4s;">
+                <a href="#contact" class="btn-primary">Enquire Now</a>
+                <a href="#rooms" class="btn-primary" style="background: rgba(255,255,255,0.1);">View Rooms</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">Why Choose Hotel Blue Moon?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 text-center fade-in">
+                    <i class="fas fa-map-marker-alt text-5xl mb-4" style="color: var(--accent);"></i>
+                    <h3 class="text-2xl font-bold mb-4">Prime Location</h3>
+                    <p>Located near the local bus stand, making it extremely convenient for travelers. Everything you need is within walking distance.</p>
+                </div>
+                <div class="glass-card p-8 text-center fade-in" style="animation-delay: 0.1s;">
+                    <i class="fas fa-bed text-5xl mb-4" style="color: var(--accent);"></i>
+                    <h3 class="text-2xl font-bold mb-4">Comfortable Rooms</h3>
+                    <p>Clean, well-maintained rooms with modern amenities ensuring a peaceful and comfortable stay for all guests.</p>
+                </div>
+                <div class="glass-card p-8 text-center fade-in" style="animation-delay: 0.2s;">
+                    <i class="fas fa-hands-helping text-5xl mb-4" style="color: var(--accent);"></i>
+                    <h3 class="text-2xl font-bold mb-4">Excellent Hospitality</h3>
+                    <p>Our friendly and helpful staff ensures your stay is memorable. We treat every guest like family.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4" style="background: rgba(255,255,255,0.02);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 fade-in">About Hotel Blue Moon</h2>
+            <div class="glass-card p-8 md:p-12 fade-in">
+                <p class="text-lg leading-relaxed mb-6">
+                    Amid shops on a side street, this unfussy budget hotel is an <strong style="color: var(--accent);">8-minute walk from the Firoz Shah Palace Complex</strong> and <strong style="color: var(--accent);">1 km from Green Square Market</strong>. Hisar Junction railway station is 2 km away.
+                </p>
+                <p class="text-lg leading-relaxed mb-6">
+                    Simply furnished rooms with bright accent walls feature <strong style="color: var(--accent);">flat-screen TVs and air conditioning</strong>, along with en suite wet rooms. Room service is available.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    The hotel offers a <strong style="color: var(--accent);">comfortable and peaceful stay</strong> with modern essentials, ideal for families, couples, and travelers seeking convenience and quality hospitality.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 fade-in">Our Rooms & Suites</h2>
+            <p class="text-center text-xl mb-16 fade-in">Comfort meets elegance in every room</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Deluxe Room -->
+                <div class="room-card glass-card fade-in">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\6.jpeg" alt="Solo Comfort Room">
+                    <div class="room-overlay">
+                        <h3 class="text-2xl font-bold mb-2">Solo Comfort Room</h3>
+                        <p class="mb-3">AC • TV • Wi-Fi • Attached Bathroom</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold" style="color: var(--accent);">₹600/night</span>
+                            <a href="#contact" class="btn-primary text-sm py-2 px-4">Enquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Room -->
+                <div class="room-card glass-card fade-in" style="animation-delay: 0.1s;">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\5.jpeg" alt="Economy Room">
+                    <div class="room-overlay">
+                        <h3 class="text-2xl font-bold mb-2">Economy Room</h3>
+                        <p class="mb-3">AC • TV • Wi-Fi • Spacious • Attached Bathroom</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold" style="color: var(--accent);">₹800/night</span>
+                            <a href="#contact" class="btn-primary text-sm py-2 px-4">Enquire</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Executive Suite -->
+                <div class="room-card glass-card fade-in" style="animation-delay: 0.2s;">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\1.jpeg" alt="Deluxe Room">
+                    <div class="room-overlay">
+                        <h3 class="text-2xl font-bold mb-2">Deluxe Room</h3>
+                        <p class="mb-3">Premium AC • Smart TV • Attached Bathroom</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold" style="color: var(--accent);">₹1,000/night</span>
+                            <a href="#contact" class="btn-primary text-sm py-2 px-4">Enquire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="py-20 px-4" style="background: rgba(255,255,255,0.02);">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">World-Class Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-item fade-in">
+                    <i class="fas fa-wifi"></i>
+                    <h3 class="text-xl font-bold mt-3">Free Wi-Fi</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.05s;">
+                    <i class="fas fa-parking"></i>
+                    <h3 class="text-xl font-bold mt-3">Parking</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.1s;">
+                    <i class="fas fa-snowflake"></i>
+                    <h3 class="text-xl font-bold mt-3">Air Conditioning</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.15s;">
+                    <i class="fas fa-soap"></i>
+                    <h3 class="text-xl font-bold mt-3">Laundry Service</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.2s;">
+                    <i class="fas fa-briefcase"></i>
+                    <h3 class="text-xl font-bold mt-3">Business Centre</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.25s;">
+                    <i class="fas fa-paw"></i>
+                    <h3 class="text-xl font-bold mt-3">Pet-Friendly</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.3s;">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h3 class="text-xl font-bold mt-3">Room Service</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.35s;">
+                    <i class="fas fa-child"></i>
+                    <h3 class="text-xl font-bold mt-3">Child-Friendly</h3>
+                </div>
+                <div class="amenity-item fade-in" style="animation-delay: 0.4s;">
+                    <i class="fas fa-smoking-ban"></i>
+                    <h3 class="text-xl font-bold mt-3">Smoke-Free</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in" onclick="openLightbox(this)">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\2.jpeg" alt="Hotel Exterior">
+                </div>
+                <div class="gallery-item fade-in" style="animation-delay: 0.05s;" onclick="openLightbox(this)">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\3.jpeg" alt="Lobby">
+                </div>
+                <div class="gallery-item fade-in" style="animation-delay: 0.1s;" onclick="openLightbox(this)">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\4.jpeg" alt="Deluxe Room">
+                </div>
+                <div class="gallery-item fade-in" style="animation-delay: 0.15s;" onclick="openLightbox(this)">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\7.jpeg" alt="Bathroom">
+                </div>
+                <div class="gallery-item fade-in" style="animation-delay: 0.2s;" onclick="openLightbox(this)">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\8.jpeg" alt="Reception">
+                </div>
+                <div class="gallery-item fade-in" style="animation-delay: 0.2s;" onclick="openLightbox(this)">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\1.jpeg" alt="Reception">
+                </div>
+                <div class="gallery-item fade-in" style="animation-delay: 0.2s;" onclick="openLightbox(this)">
+                    <img src="C:\Users\aalek\Documents\Websites\Hotel Blue Moon\Images 2\6.jpeg" alt="Reception">
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 px-4" style="background: rgba(255,255,255,0.02);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 fade-in">What Our Guests Say</h2>
+            <div class="text-center mb-12 fade-in">
+                <div class="inline-flex items-center space-x-2 mb-2">
+                    <i class="fas fa-star" style="color: #ffd700;"></i>
+                    <i class="fas fa-star" style="color: #ffd700;"></i>
+                    <i class="fas fa-star" style="color: #ffd700;"></i>
+                    <i class="fas fa-star" style="color: #ffd700;"></i>
+                    <i class="fas fa-star" style="color: #ffd700;"></i>
+                    <span class="ml-2 text-xl font-bold">4.8/5</span>
+                </div>
+                <p class="text-lg">Based on authentic guest reviews</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Review 1 -->
+                <div class="review-card fade-in">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-2xl font-bold text-white">
+                                M
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-xl font-bold">Madhuri Jain</h4>
+                                <div class="flex space-x-1">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                            </div>
+                            <p class="text-lg leading-relaxed">
+                                "Location very easy approachable as it's near bus stand and almost everything can be found near the hotel itself. The facade is small but family rooms were better than expected. Staff behavior and food were excellent."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="review-card fade-in" style="animation-delay: 0.1s;">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400 flex items-center justify-center text-2xl font-bold text-white">
+                                Z
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-xl font-bold">Zaryab Mehdi</h4>
+                                <div class="flex space-x-1">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                            </div>
+                            <p class="text-lg leading-relaxed">
+                                "I booked via OYO as I was visiting Hisar first time. Staff was very nice and practical. Loved the experience."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="review-card fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex items-start space-x-4">
+                        <div class="flex-shrink-0">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-green-400 to-emerald-400 flex items-center justify-center text-2xl font-bold text-white">
+                                N
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-xl font-bold">Naresh Kumar</h4>
+                                <div class="flex space-x-1">
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                    <i class="fas fa-star text-yellow-400"></i>
+                                </div>
+                            </div>
+                            <p class="text-lg leading-relaxed">
+                                "Perfect location near bus stand. Clean hotel, great hospitality. Owner and staff were very helpful."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More Reviews Indicator -->
+                <div class="text-center pt-8 fade-in" style="animation-delay: 0.3s;">
+                    <p class="text-xl italic" style="color: var(--accent);">...and many more happy guests! ⭐</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in">Frequently Asked Questions</h2>
+            
+            <div class="space-y-4">
+                <div class="faq-item fade-in">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What are the check-in and check-out times?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Check-in time is 12:00 PM and check-out time is 11:00 AM. Early check-in and late check-out are subject to availability.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" style="animation-delay: 0.05s;">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is parking available at the hotel?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we provide free parking facilities for our guests.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" style="animation-delay: 0.1s;">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Do you offer airport/railway station pickup?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We can arrange pickup services on request. Please contact us in advance to arrange transportation.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" style="animation-delay: 0.15s;">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Is Wi-Fi available in rooms?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, complimentary high-speed Wi-Fi is available in all rooms and common areas.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" style="animation-delay: 0.2s;">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>Are pets allowed?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we are a pet-friendly hotel. Please inform us in advance if you're traveling with pets.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" style="animation-delay: 0.25s;">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <span>What is your cancellation policy?</span>
+                        <i class="fas fa-chevron-down faq-icon"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Cancellations made 24 hours before check-in are free. Please contact us for detailed cancellation terms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4" style="background: rgba(255,255,255,0.02);">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 fade-in">Get In Touch</h2>
+            <p class="text-center text-xl mb-16 fade-in">We're here to help you plan your perfect stay</p>
+
+            <div class="flex justify-center">
+                <!-- Contact Info -->
+                <div class="fade-in">
+                    <div class="glass-card p-8 mb-8">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-4">
+                            <a href="tel:+919812120009" class="flex items-center space-x-4 hover:text-white transition">
+                                <i class="fas fa-phone text-2xl" style="color: var(--accent);"></i>
+                                <div>
+                                    <p class="text-sm opacity-75">Call Us</p>
+                                    <p class="text-lg font-semibold">+91 9812120009</p>
+                                </div>
+                            </a>
+
+                            <a href="mailto:hotelbluemoonhisar@gmail.com" class="flex items-center space-x-4 hover:text-white transition">
+                                <i class="fas fa-envelope text-2xl" style="color: var(--accent);"></i>
+                                <div>
+                                    <p class="text-sm opacity-75">Email Us</p>
+                                    <p class="text-lg font-semibold break-all">hotelbluemoonhisar@gmail.com</p>
+                                </div>
+                            </a>
+
+                            <div class="flex items-start space-x-4">
+                                <i class="fas fa-map-marker-alt text-2xl" style="color: var(--accent);"></i>
+                                <div>
+                                    <p class="text-sm opacity-75">Address</p>
+                                    <p class="text-lg font-semibold">Near Bansal Complex, Gali No. 01, Near Local Bus Stand, Rishi Nagar, Hisar, Haryana - 125001</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 pt-8 border-t border-gray-700">
+                            <a href="https://wa.me/919812120009" target="_blank" class="btn-primary w-full text-center block">
+                                <i class="fab fa-whatsapp mr-2"></i> Chat on WhatsApp
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Map -->
+                    <div class="glass-card p-4">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3484.015053220978!2d75.71650107497666!3d29.164228659738455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391233c87f32e7ef%3A0xbaad594125654be1!2sOYO%20Hotel%20Blue%20Moon!5e0!3m2!1sen!2sin!4v1775838310650!5m2!1sen!2sin"
+                            width="100%" 
+                            height="300" 
+                            style="border:0; border-radius: 10px;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <i class="fas fa-moon text-3xl" style="color: #ffd89b;"></i>
+                <div>
+                    <h3 class="text-2xl font-bold" style="color: var(--text-light);">Hotel Blue Moon</h3>
+                    <p class="text-sm" style="color: var(--accent);">Experience Luxury Under the Moonlight</p>
+                </div>
+            </div>
+            <p class="mb-4">Near Bansal Complex, Gali No. 01, Rishi Nagar, Hisar, Haryana - 125001</p>
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="tel:+919812120009" class="text-2xl hover:text-white transition">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="mailto:hotelbluemoonhisar@gmail.com" class="text-2xl hover:text-white transition">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://wa.me/919812120009" target="_blank" class="text-2xl hover:text-white transition">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/22ANFFLY5n27riKM7" target="_blank" class="text-2xl hover:text-white transition">
+                    <i class="fas fa-map-marker-alt"></i>
+                </a>
+            </div>
+            <p class="text-sm opacity-75">© 2024 Hotel Blue Moon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/919812120009" target="_blank" class="floating-btn whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="#contact" class="floating-btn enquire-btn">
+        <i class="fas fa-envelope"></i>
+    </a>
+    <button class="floating-btn back-to-top" id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img src="" alt="Gallery Image" id="lightboxImg">
+    </div>
+
+    <script>
+        // Generate Stars
+        function generateStars() {
+            const starsContainer = document.querySelector('.stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        generateStars();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Back to Top Button
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Scroll to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth Scroll for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('active');
+        }
+
+        // FAQ Toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Lightbox
+        function openLightbox(element) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const img = element.querySelector('img');
+            
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Intersection Observer for Fade-in Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Trigger initial animations for hero section
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.hero .fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        });
+
+    </script>
+</body>
+</html>
